@@ -1,23 +1,42 @@
-import logo from './logo.svg';
+
 import './App.css';
+import {useState} from 'react';
+import ComponentD from './components/ComponentD';
+import { LoginProvider } from './context/loginContext';
+
 
 function App() {
+
+
+  let getDataFromD=(data)=>{
+  console.log(data);
+}
+const logoutUser=()=>{
+    setloginData({
+      ...loginData,
+      login:false
+    })
+  }
+
+  const [loginData,setloginData] = useState({
+
+    login: true,
+    userName:'Lavanya',
+   
+    logoutUser:logoutUser,
+    getDataFromD:getDataFromD
+  })
+
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <LoginProvider value={loginData}>
+        <ComponentD />
+   
+      </LoginProvider>
+
     </div>
   );
 }
